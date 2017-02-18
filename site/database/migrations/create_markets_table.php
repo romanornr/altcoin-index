@@ -17,6 +17,7 @@ class createMarketsTable extends Migration
             $table->string('name');
             $table->string('base');
             $table->string('quote');
+            $table->string('pair');
         });
     }
     /**
