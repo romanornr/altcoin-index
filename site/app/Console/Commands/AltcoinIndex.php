@@ -1,16 +1,45 @@
 <?php
+namespace App\Console\Commands;
 
-namespace App\Http\Controllers;
-use App\Index;
+use Illuminate\Console\Command;
+use App\AltIndex;
 use Eloquent;
 use Illuminate\Http\Request;
-use Illuminate\Console\Scheduling\Schedule;
 
-class IndexController extends Controller
+class AltcoinIndex extends Command
 {
-    public function index(Schedule $schedule)
-    {
-        $schedule->call(function (){ 
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'ticker:altcoinIndex';
+
+    /**
+     * getApi coinmarketcap & calculate the index
+     * Save Data into the database
+     *
+     * @var string
+     */
+    protected $description = 'Save altcoinIndex price 5min';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+     public function __construct()
+     {
+         parent::__construct();
+     }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+     public function handle()
+     {
         $json = file_get_contents('https://api.coinmarketcap.com/v1/ticker/?limit=50');
         $list = ["ethereum", "litecoin", "monero", "dash", "ethereum-classic","maidsafecoin","nem","augur","factom","zcash"];
         $totalcap = 0;
@@ -28,16 +57,11 @@ class IndexController extends Controller
             $altcoinIndex = round($altcoinIndex, 2);
             $timestamp = time();
 
-            $index = new Index;
+            $index = new AltIndex;
             $index->price = $altcoinIndex;
             $index->timestamp = $timestamp;
             $index->save();
-             })->everyMinute();
-
-           // return response()->json([
-              //  'index' => $altcoinIndex,
-               // 'timestamp' =>$timestamp]);
-         
+            $this->info('Altcoin index save success');
      }
 
 }
