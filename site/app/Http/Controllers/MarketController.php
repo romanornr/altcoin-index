@@ -31,4 +31,11 @@ class MarketController extends Controller
         $markets = Markets::where('name', $name)->first();
         return response()->json($markets);
     }
+
+    public function find($name)
+    {
+        $markets = Markets::where('name', $name)->first();
+        return response()->json($markets);
+    }
+    
 }
