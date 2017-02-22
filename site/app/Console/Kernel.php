@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
+use App\Index;
+use Eloquent;
+use Illuminate\Http\Request;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\AltIndex'
     ];
 
     /**
@@ -24,6 +27,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        $schedule->command('ticker:altcoinIndex')->everyFiveMinutes();
     }
 }
