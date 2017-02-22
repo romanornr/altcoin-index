@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Markets;
+use App\Index;
 use Eloquent;
 use Illuminate\Http\Request;
 use Illuminate\Console\Scheduling\Schedule;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Schedule $schedule)
     {
+        $schedule->call(function (){ 
         $json = file_get_contents('https://api.coinmarketcap.com/v1/ticker/?limit=50');
         $list = ["ethereum", "litecoin", "monero", "dash", "ethereum-classic","maidsafecoin","nem","augur","factom","zcash"];
         $totalcap = 0;
@@ -26,9 +27,17 @@ class IndexController extends Controller
 
             $altcoinIndex = round($altcoinIndex, 2);
             $timestamp = time();
-            return response()->json([
-                'index' => $altcoinIndex,
-                'timestamp' =>$timestamp]);
+
+            $index = new Index;
+            $index->price = $altcoinIndex;
+            $index->timestamp = $timestamp;
+            $index->save();
+             })->everyMinute();
+
+           // return response()->json([
+              //  'index' => $altcoinIndex,
+               // 'timestamp' =>$timestamp]);
+         
      }
 
 }
