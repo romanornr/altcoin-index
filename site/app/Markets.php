@@ -24,4 +24,9 @@ class Markets extends Model
 
     public $timestamps = false;
 
+    public function tickdata()
+    {
+        return $this->hasMany('App\Tickdata', 'altcoin', 'name');
+    }
+
 }

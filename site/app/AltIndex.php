@@ -23,4 +23,9 @@ class AltIndex extends Model
     protected $fillable = ['id'];
 
     public $timestamps = false;
+
+    public function index()
+    {
+        return $this->hasMany('App\Ticketdata','timestamp','timestamp');
+    }
 }
