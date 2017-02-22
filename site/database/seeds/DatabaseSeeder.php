@@ -61,6 +61,11 @@ class MarketTableSeeder extends Seeder
         ]);
 
         DB::table('markets')->insert([
+            'name' => 'augur',
+            'symbol' => 'rep',
+        ]);
+
+        DB::table('markets')->insert([
             'name' => 'factom',
             'symbol' => 'fct',
         ]);
