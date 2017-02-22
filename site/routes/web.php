@@ -18,4 +18,5 @@ $app->get('/', function () use ($app) {
 $app->group(['prefix' => 'api/v1'], function($app)
 {
     $app->get('markets','MarketController@index');
+    $app->get('markets/{name}','MarketController@getMarket');
 });

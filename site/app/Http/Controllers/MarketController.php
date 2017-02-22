@@ -17,6 +17,18 @@ class MarketController extends Controller
     {
         $markets = Markets::all();
         return response()->json($markets);
-        
+    }
+
+   /**
+    * Fetch a record by id
+    *
+    * @param id
+    *
+    * @return mixed
+    */
+    public function getMarket($name)
+    {
+        $markets = Markets::where('name', $name)->first();
+        return response()->json($markets);
     }
 }
