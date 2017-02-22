@@ -4,9 +4,6 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
-use App\Index;
-use Eloquent;
-use Illuminate\Http\Request;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\AltIndex'
+        'App\Console\Commands\AltcoinIndex'
     ];
 
     /**
