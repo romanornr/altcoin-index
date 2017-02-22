@@ -14,7 +14,7 @@ class CreateAltcoinIndexTable extends Migration
     public function up()
     {
         Schema::create('index_table', function(Blueprint $table) {
-            $table->double('price');
+            $table->double('price')->unsigned();
             $table->double('timestamp')->unique();
         });
     }

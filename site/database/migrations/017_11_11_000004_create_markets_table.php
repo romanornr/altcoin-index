@@ -15,10 +15,11 @@ class CreateMarketsTable extends Migration
     {
         Schema::create('markets', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 20);
+            $table->string('name', 20)->unique();
             $table->string('symbol', 10);
         });
     }
+    
     /**
      * Reverse the migrations
      *

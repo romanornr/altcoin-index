@@ -14,13 +14,14 @@ class CreateTickdataTable extends Migration
     public function up()
     {
         Schema::create('tickdata', function(Blueprint $table){
-            $table->double('timestamp');
+            $table->increments('id')->unsigned();
+            $table->double('timestamp')->unsigned();
             $table->double('value')->unsigned();
             $table->double('weight')->unsigned();
-            $table->integer('coin_id')->unsigned()->nullable();
+            $table->string('altcoin')->nullable();
 
-            $table->foreign('coin_id')->references('id')->on('markets');
-            $table->foreign('timestamp')->references('timestamp')->on('index_table');
+            $table->foreign('altcoin')->references('name')->on('markets');
+            //$table->foreign('timestamp')->references('timestamp')->on('index_table');
             });
     }
 
