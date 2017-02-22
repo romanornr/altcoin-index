@@ -2,6 +2,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Index;
+use Eloquent;
+use Illuminate\Http\Request;
 
 class AltIndex extends Command
 {
