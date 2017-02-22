@@ -26,7 +26,7 @@ class AltIndexController extends Controller
      */
      public function history()
      {
-         $altcoinIndex = AltIndex::orderBy('timestamp')->get();
+         $altcoinIndex = AltIndex::orderBy('timestamp', 'desc')->get();
          return response()->json($altcoinIndex);
      }
 }
