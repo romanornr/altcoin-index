@@ -22,4 +22,6 @@ class Markets extends Model
      */
     protected $fillable = ['id'];
 
+    public $timestamps = false;
+
 }
